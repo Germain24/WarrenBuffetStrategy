@@ -17,7 +17,7 @@ def weight(list):
     return [1 / (i ** (0.5)) / sum([1 / (i ** (0.5)) for i in range(1, len(list) + 1)]) * 100 for i in range(1, len(list) + 1)]
 
 @lru_cache
-def afficher_barre_chargement(pourcentage):
+def loading(pourcentage):
     bar_length = 100  # Longueur totale de la barre de chargement
     blocs_charges = int(round(bar_length * pourcentage / 100))
 
@@ -27,9 +27,9 @@ def afficher_barre_chargement(pourcentage):
     # Afficher la barre de chargement et le pourcentage
     print(f"[{barre}] {pourcentage}%")
 
-df = pd.read_excel('Actions.xlsx')
+df = pd.read_excel('stock.xlsx')
 
-actions = list(get_jsonparsed_data("https://financialmodelingprep.com/api/v3/financial-statement-symbol-lists?apikey"
+stock = list(get_jsonparsed_data("https://financialmodelingprep.com/api/v3/financial-statement-symbol-lists?apikey"
                                    "=ce82b6a14287d6b24fdcaf5468401b12"))
 
 Indispo = ["8109.TWO","PHA.PA","SMTPC.PA","DGE.PA","HMI.DE","MSF.DE","IXD1.DE","FAS.DE","NOVC.DE","COZ.DE","ADB.DE",
@@ -216,7 +216,7 @@ def analyse(ticker):
 
         sheet.append(ligne)
 
-        workbook.save("Actions.xlsx")
+        workbook.save("Stocks.xlsx")
 
         print(f"\033[32m {ticker} Nom : {nom.ljust(20)[:20]:<25} \033[0m")
 
@@ -229,18 +229,18 @@ def analyse(ticker):
 
 
 try:
-    workbook = openpyxl.load_workbook("Actions.xlsx")
+    workbook = openpyxl.load_workbook("Stocks.xlsx")
     sheet = workbook.active
 except:
     workbook = openpyxl.Workbook()
     sheet = workbook.active
-    sheet.append(["Ticker", "Date", "Score", "Nom", "Secteur", "Pays"])
+    sheet.append(["Ticker", "Date", "Score", "Name", "Sector", "Country"])
 
-#actions = ['EVO.ST', 'RMS.PA', 'RAA.DE', '3092.T', 'ITX.MC', 'BF-B', '600519.SS', '603369.SS', '000858.SZ', '002304.SZ', '000568.SZ', '603896.SS', 'CSLLY', '600436.SS', '002821.SZ', '3613.HK', '0867.HK', 'FAE.MC', 'NOVO-B.CO', 'ORNBV.HE', '4587.T', 'BVXP.L', 'TECH', '603658.SS', '002932.SZ', '603387.SS', '002022.SZ', 'DIA.MI', '1858.HK', '7730.T', 'ANSS', 'LVC.WA', 'DOTD.L', 'MSFT', '2413.T', 'GOOG', '603444.SS', '3901.T', '2371.T', '4684.T', '002415.SZ', '1523.HK', '603203.SS', '002222.SZ', '600563.SS', '002690.SZ', 'FAST', '603568.SS', 'FDS']
+#stock = ['EVO.ST', 'RMS.PA', 'RAA.DE', '3092.T', 'ITX.MC', 'BF-B', '600519.SS', '603369.SS', '000858.SZ', '002304.SZ', '000568.SZ', '603896.SS', 'CSLLY', '600436.SS', '002821.SZ', '3613.HK', '0867.HK', 'FAE.MC', 'NOVO-B.CO', 'ORNBV.HE', '4587.T', 'BVXP.L', 'TECH', '603658.SS', '002932.SZ', '603387.SS', '002022.SZ', 'DIA.MI', '1858.HK', '7730.T', 'ANSS', 'LVC.WA', 'DOTD.L', 'MSFT', '2413.T', 'GOOG', '603444.SS', '3901.T', '2371.T', '4684.T', '002415.SZ', '1523.HK', '603203.SS', '002222.SZ', '600563.SS', '002690.SZ', 'FAST', '603568.SS', 'FDS']
 
 
-for nombre, i in enumerate(actions):
-    afficher_barre_chargement(round(nombre * 100 / len(actions)))
+for number, i in enumerate(stock):
+    loading(round(number * 100 / len(stock)))
     if i not in Indispo + list(df['Ticker']):
             try:
                 analyse(i)
