@@ -82,6 +82,8 @@ The Excel file provides a simulation of historical stock investments based on th
 
 ## Google Sheet Analysis
 
+### Usage
+
 1. Open a copy of this GoogleSheet : https://docs.google.com/spreadsheets/d/1IQvaiyNn9g66IUcMnfh851EniZu_vCtUYAIqxXgLssg/edit?usp=sharing .
 
 2. You can explore each socket's to know how this Google Sheets work but the main Tabs are the "Sumary" to see results and "Data" to put your Portoflio data in the collumns "With inflation". It will compare your porfolio with the cac40, STOXX Europe 600, SnP 500 and ETF world.
