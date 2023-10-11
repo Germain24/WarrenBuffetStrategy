@@ -14,7 +14,6 @@ This repository contains a Python script and an Excel file for conducting financ
 - [Usage](#usage)
 - [Results](#results)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
