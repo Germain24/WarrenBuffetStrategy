@@ -1,0 +1,2 @@
+# WarrenBuffetStrategy
+Warren Buffet Strategy
